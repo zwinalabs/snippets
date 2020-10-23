@@ -1,0 +1,96 @@
+
+<html>
+  <head>
+    <title>Making placeholder star specifically red</title>
+<style type="text/css">
+.centered {
+  float: none;
+  margin: 100px auto;
+}
+.form-group {
+  position: relative;
+  margin: 16px 0;
+}
+.form-group .palceholder {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: none;
+}
+.form-group label {
+  font-wight: normal;
+}
+.form-group .star {
+  color: #ff0000;
+}
+input {
+  padding: 12px;
+  width: 80%;
+}
+
+.form-group label,
+.form-group .palceholder,
+input {
+  color: #8a8a8a;
+}
+</style>
+<script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container" id="container">
+      <div class="row">
+        <div class="col-md-6 centered">
+          <form>
+            <div class="form-group name-group">
+              <div class="palceholder">
+                <label for="name">Kais Chrif</label>
+                <span class="star">*</span>
+              </div>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="form-group email-group">
+              <div class="palceholder">
+                <label for="email">contact@gobiz.tn</label>
+                <span class="star">*</span>
+              </div>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group web_site-group">
+              <div class="palceholder">
+                <label for="web_site">https://www.gobiz.tn</label>
+                <span class="star">*</span>
+              </div>
+              <input type="text" class="form-control" id="web_site" required>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+      </div>
+  </div>
+
+  <script type="text/javascript">
+  /***********
+  Making placeholder star specifically red 
+  ****************/
+  function updatePlaceHolderFromById(id_dom){
+      $(id_dom+' .palceholder').click(function() {
+          $(this).siblings('input').focus();
+      });
+      $(id_dom+' .form-control').focus(function() {
+          $(this).siblings('.palceholder').hide();
+      });
+      $(id_dom+' .form-control').change(function() {
+          $(this).siblings('.palceholder').hide();
+      });
+      $(id_dom+' .form-control').blur(function() {
+          var $this = $(this);
+          if ($this.val().length == 0){
+              $(this).siblings('.palceholder').show();
+          }
+      });
+      $(id_dom+' .form-control').blur();
+  }
+  updatePlaceHolderFromById("#container");
+  </script>
+  </body>
+</html>
